@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+  <script src="jquery-3.6.3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+</script>
+</head>
+
+
+
+
+<body class="bg-white dark:bg-gray-900">
+    <div class="p-8 ...">
+
+<form>
+    <div class="flex">
+        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
+        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">Filter By<svg aria-hidden="true" class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="multiLevelDropdownButton">
+              <!-- <li>
+                <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" onclick="getregion()" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Region<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
+
+                <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" id="regionloop" aria-labelledby="doubleDropdownButton">
+                 </ul>
+                </div>
+              </li> -->
+              <li>
+                <button id="doubleDropdownButton" onclick="getregion()" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Regions<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
+                  <div id="doubleDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" id="regionloop" aria-labelledby="doubleDropdownButton">
+                       
+                    </ul>
+                </div>
+              </li>
+              <li>
+                <button id="sortdropdownbtn" data-dropdown-toggle="sortdropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sort By<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
+                  <div id="sortdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" id="sortlist" aria-labelledby="sortdropdownbtn">
+                        <li>
+                            <a id="area" onclick="calledarea()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Area</a>
+                        </li>
+                        <li>
+                            <a onclick="calledpopulation()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Population</a>
+                        </li>
+                        <li>
+                            <a onclick="calledAlphabetical()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Alphabets</a>
+                        </li>
+                    </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Land-Locked Countries</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UN Members</a>
+              </li>
+            </ul>
+        </div>
+        <div class="relative w-full">
+            <input type="text" id="myinput" onkeypress="search()" onkeyup="search()" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search">               
+            </button>
+        </div>
+    </div>
+</form>
+
+<!-- Default Modal -->
+<div id="mymodal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+    <div class="relative w-full h-full max-w-lg md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                    Country Details
+                </h3>
+                <button type="button" onclick="$('#mymodal').hide();" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="mymodal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span> 
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-6 space-y-6">
+                <img class="h-auto max-w-xl mx-auto rounded-lg shadow-xl dark:shadow-gray-800" id="picture" alt="image description">
+                
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Official Name:
+                            </th>
+                            <td class="px-6 py-4">
+                                <span id="official" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Capital:
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="capital" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Area (km²):
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="modalarea" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Population:
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="modalpop" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Region:
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="region" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Subregion:
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="subregion" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-900">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Time Zone:
+                            </th>
+                            <td class="px-5 py-4">
+                                <span id="timezone" class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-gray-300"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button onclick="$('#mymodal').hide();" data-modal-hide="mymodal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <button id="theme-toggle" type="button" class=" text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+        <div class="p-8 ...">
+            <div class="grid gap-16 lg:grid-cols-4" id="column">
+                
+            </div>
+        </div>
+    </div>
+       
+     
+    
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--  -->
+
+
+
+
+  <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+
+  <script>
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+// Change the icons inside the button based on previous settings
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    themeToggleLightIcon.classList.remove('hidden');
+} else {
+    themeToggleDarkIcon.classList.remove('hidden');
+}
+
+var themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', function() {
+
+    // toggle icons inside button
+    themeToggleDarkIcon.classList.toggle('hidden');
+    themeToggleLightIcon.classList.toggle('hidden');
+
+    // if set via local storage previously
+    if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        }
+
+    // if NOT set via local storage previously
+    } else {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    }
+    
+});
+
+
+    var DATA=[];
+    $.getJSON("https://restcountries.com/v3.1/all",function(data){
+      for (index = 0; index < data.length; index++) {
+        if (data[index].name.common=='Israel') {
+            
+        }
+        else{
+            DATA.push(data[index]);
+            display(DATA);
+        }
+        }
+        windows.onload=document.getElementById("#myinput").value='';
+    }
+	);
+    function calledAlphabetical(){
+        display(DATA);
+    }
+    function display(DATA){
+        $('#column').html('');
+        let country='';      
+        DATA.sort(datasort); 
+        for (let index = 0; index < DATA.length; index++) {
+            country=country+   `  
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
+                        </a>
+                        <button id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Details
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+           `
+        }
+        $('#column').html(country);
+    }
+    function datasort(a,b) {
+        if (a.name.common < b.name.common) {
+            return -1;
+        }
+        if (a.name.common > b.name.common) {
+            return 1;
+        }    
+    }
+    function search() {
+        let search_item=[];
+        let filter=document.getElementById("myinput").value;
+        for (let index = 0; index < DATA.length; index++) {
+            let ispresent=DATA[index].name.common.toLowerCase().includes(filter);
+            if (ispresent) {
+                search_item.push(DATA[index]);
+            }            
+        }
+        display(search_item);
+    }
+    function modaldata(common) {
+        for (let index = 0; index < DATA.length; index++) {
+            if (DATA[index].name.common==common) {
+                $('#official').text(DATA[index].name.official);
+                $('#picture').attr("src", DATA[index].flags.png); 
+                $('#capital').text(DATA[index].capital);
+                $('#region').text(DATA[index].region);
+                $('#subregion').text(DATA[index].subregion);
+                $('#timezone').text(DATA[index].timezones);
+                $('#modalarea').text(DATA[index].area);
+                $('#modalpop').text(DATA[index].population);
+
+            }
+        }
+        $('#mymodal').show();
+    }
+
+    function getregion() {
+        $('#regionloop').html('');
+        let region='';         
+        var uniqueRegions = [];
+        for (let index = 0; index < DATA.length; index++) {  
+            if (!uniqueRegions.includes(DATA[index].region)) {
+                uniqueRegions.push(DATA[index].region);  
+            }
+        }
+        for (let index = 0; index < uniqueRegions.length; index++) {
+        region=region+`
+                
+                <button id="doubleDropdownButton" onclick="displayregion('`+uniqueRegions[index]+`')" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">`+uniqueRegions[index]+`</button>                          
+                </div>              
+                `
+        }
+        $('#regionloop').html(region);
+    }
+
+    function calledarea() {
+    displaybyarea(DATA);
+    }   
+    
+    function displayregion(name) {
+        temp=[];
+        for (let index = 0; index < DATA.length; index++) {
+            if (DATA[index].region==name) {
+                temp.push(DATA[index])
+            }            
+        }
+        display(temp);
+    }
+    function displaybyarea(DATA){
+        console.log(DATA);
+        $('#column').html('');
+        let country='';      
+        DATA.sort(SortByArea)  
+        for (let index = 0; index < DATA.length; index++) {
+            country=country+   `  
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="mb-2 text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
+                        </a>
+                        <p class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Area :  <span class="mb-2 text-base tracking-tight text-gray-900 dark:text-white"> `+DATA[index].area+` km²</span></p>
+                        <button id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Details
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+           `
+        }
+        $('#column').html(country);
+
+    }
+    function SortByArea(a,b) {
+        if (a.area > b.area) {
+            return -1;
+        }
+        if (a.area < b.area) {
+            return 1;
+        }
+    }
+    function calledpopulation() {
+    displaybypop(DATA);
+    }   
+
+    function displaybypop(DATA){
+        console.log(DATA);
+        $('#column').html('');
+        let country='';      
+        DATA.sort(SortBypop)  
+        for (let index = 0; index < DATA.length; index++) {
+            country=country+   `  
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="mb-2 text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
+                        </a>
+                        <p class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Population :  <span class=" text-base text-gray-900 dark:text-white"> `+DATA[index].population+`</span></p>
+                        <button id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Details
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+           `
+        }
+        $('#column').html(country);
+
+    }
+    function SortBypop(a,b) {
+        if (a.population > b.population) {
+            return -1;
+        }
+        if (a.population < b.population) {
+            return 1;
+        }
+    }
+  </script>
+</body>
+</html>
