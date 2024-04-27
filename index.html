@@ -88,7 +88,7 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <img class="h-auto max-w-xl mx-auto rounded-lg shadow-xl dark:shadow-gray-800" id="picture" alt="image description">
+                <img class="h-auto max-w-auto mx-auto sm:mx-w-auto rounded-lg shadow-xl dark:shadow-gray-800" id="picture" alt="image description">
                 
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -266,18 +266,15 @@ themeToggleBtn.addEventListener('click', function() {
         DATA.sort(datasort); 
         for (let index = 0; index < DATA.length; index++) {
             country=country+   `  
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
+                        <img class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
+                            <h5 class="mb-2 text-2xl sm:text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
                         </a>
-                        <button id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Details
-                        </span>
+                       
                     </div>
                 </div>
 
@@ -361,19 +358,16 @@ themeToggleBtn.addEventListener('click', function() {
         DATA.sort(SortByArea)  
         for (let index = 0; index < DATA.length; index++) {
             country=country+   `  
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="mb-2 text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
+                            <h5 class="mb-2 text-2xl sm:text-3xl sm:text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
                         </a>
                         <p class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Area :  <span class="mb-2 text-base tracking-tight text-gray-900 dark:text-white"> `+DATA[index].area+` km²</span></p>
-                        <button id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Details
-                        </span>
+                       
                     </div>
                 </div>
 
@@ -402,7 +396,7 @@ themeToggleBtn.addEventListener('click', function() {
         DATA.sort(SortBypop)  
         for (let index = 0; index < DATA.length; index++) {
             country=country+   `  
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img id="showmodal" data-modal-toggle="mymodal" data-modal-target="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="rounded-t-lg w-full" src="`+DATA[index].flags.png+`" alt="" />
                     </a>
@@ -411,10 +405,7 @@ themeToggleBtn.addEventListener('click', function() {
                             <h5 class="mb-2 text-3xl text-center font-bold tracking-tight text-gray-900 dark:text-white">`+DATA[index].name.common+`</h5>
                         </a>
                         <p class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Population :  <span class=" text-base text-gray-900 dark:text-white"> `+DATA[index].population+`</span></p>
-                        <button id="showmodal" data-modal-toggle="mymodal" onclick="modaldata('`+DATA[index].name.common+`')" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Details
-                        </span>
+                       
                     </div>
                 </div>
 
